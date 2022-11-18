@@ -35,7 +35,7 @@ class Test:
         assert self.a2.get_balance() == 20
         
         self.a2.withdraw(5.5)
-        assert self.a2.get_balance == 14.5
+        assert self.a2.get_balance() == 14.5
         
         assert self.a2.withdraw(50) == False
         assert self.a2.withdraw('string') == False
