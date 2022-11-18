@@ -18,24 +18,26 @@ class Test:
         assert self.a2.get_balance() == 0
         
     def test_deposit(self):
-        self.a1.deposit(20)
+        assert self.a1.deposit(20) is True
         assert self.a1.get_balance() == 20
         self.a1.deposit(10.5)
-        assert self.a1.get_balance() == 30.5
+        assert self.a1.get_balance() == pytest.approx(30.5, abs=0.001)
         
-        assert self.a1.deposit('string') == False
-        assert self.a1.deposit(-5) == False
-        assert self.a1.deposit(0) == False
+        assert self.a1.deposit('string') is False
+        assert self.a1.deposit(-5) is False
+        assert self.a1.deposit(0) is False
 
     def test_withdraw(self):
-        assert self.a2.withdraw(20) == False
+        assert self.a2.withdraw(20) is False
         
         self.a2.deposit(30)
-        self.a2.withdraw(10)
+        assert self.a2.withdraw(10) is True
         assert self.a2.get_balance() == 20
         
         self.a2.withdraw(5.5)
-        assert self.a2.get_balance() == 14.5
+        assert self.a2.get_balance() == pytest.approx(14.5, abs=0.001)
         
-        assert self.a2.withdraw(50) == False
-        assert self.a2.withdraw('string') == False
+        assert self.a2.withdraw(50) is False
+        assert self.a2.withdraw('string') is False
+        
+        assert self.a2.withdraw(0) is False
