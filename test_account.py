@@ -23,7 +23,7 @@ class Test:
         self.a1.deposit(10.5)
         assert self.a1.get_balance() == pytest.approx(30.5, abs=0.001)
         
-        assert self.a1.deposit('string') is False
+
         assert self.a1.deposit(-5) is False
         assert self.a1.deposit(0) is False
 
@@ -38,6 +38,5 @@ class Test:
         assert self.a2.get_balance() == pytest.approx(14.5, abs=0.001)
         
         assert self.a2.withdraw(50) is False
-        assert self.a2.withdraw('string') is False
         
         assert self.a2.withdraw(0) is False
